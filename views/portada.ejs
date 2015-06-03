@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Soy <%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='icon' href='favicon.ico' type="image/x-icon" />
+  </head>
+  <body>
+    <h1>Bienvenido a <%= title %></h1>
+    <p>El portal donde podrá crear sus propios Juegos!</p>    
+
+	<p><a href="/quizes/pregunta">Comience a Jugar</a></p>
+
+    <p>Texto escapado: <%= title %></p>
+    <p>Texto sin Escapar: <%- title %></p>
+    <% include incluido.html %>
+  </body>
+</html>
