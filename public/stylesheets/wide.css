@@ -1,0 +1,25 @@
+body { background: #999; }
+
+#page-wrap:after { content: "Wide Layout"; }
+
+/* Barras en menu */
+nav span:before { color: red; content: ""; }
+nav:after { color: blue; content: none; }
+
+nav {
+	float: left;
+	width: 15%;
+	height: 200px;
+}
+nav span { margin: 0 200px 0 0; }
+section {
+	float: right;
+	width: 80%;
+	height: 200px;
+}
+
+footer { 
+	clear: both;
+	display: block;
+}
+

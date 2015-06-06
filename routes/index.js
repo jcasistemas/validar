@@ -6,7 +6,7 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('portada', { title: 'Bienvenido a Quiz !!! <br><h3><span style="color:red;">¿Escapado?</span><h3>' });
+  res.render('portada', { title: 'Bienvenido a Quiz !!!' });
 });
 
 // Version 2 - Importar el controlador
