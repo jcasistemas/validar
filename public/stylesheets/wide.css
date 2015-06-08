@@ -9,17 +9,48 @@ nav:after { color: blue; content: none; }
 nav {
 	float: left;
 	width: 15%;
-	height: 200px;
+	height: 310px;
 }
 nav span { margin: 0 200px 0 0; }
 section {
 	float: right;
 	width: 80%;
-	height: 200px;
+	height: 310px;
 }
 
-footer { 
+footer {
 	clear: both;
 	display: block;
 }
 
+/* Autor */
+#nombre, #foto, #video {
+	margin: 0 10px 0 0;
+	max-height: 85%;
+	float: left;
+}
+
+#nombre {
+	width: 18%;
+	padding-top: 50px;
+}
+
+#foto, #video {
+	padding-top: 20px;
+}
+
+#foto {
+	max-width: 130px;
+	max-height: 130px;
+}
+#cfoto {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#video {
+		max-width: 30%;
+}
+#cvideo {
+	max-width: 95%;
+}

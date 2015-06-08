@@ -1,9 +1,14 @@
-body { 
-	background: #333; 
+body {
+	background: #333;
 	font-size: xx-large;
 }
 
 #page-wrap:after { content: "Smartphone Layout"; }
+
+section > div {
+	margin: 0;
+	padding: 0;
+}
 
 /* Barras en menu */
 nav span:before { content: ""; }
@@ -13,3 +18,20 @@ h2 span, section h3 { display: none; }
 
 footer, input { font-size: large; }
 
+li {list-style-type: none;}
+
+#nombre, #video, #foto { margin: 10px auto; }
+
+#foto {
+	max-width: 80vw;
+	max-height: 80vw;
+}
+#cfoto {
+	width: 100%;
+	height: 100%;
+}
+
+#video, #cvideo {
+	width: 95%;
+	padding: 2px;
+}
