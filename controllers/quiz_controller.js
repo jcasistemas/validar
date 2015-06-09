@@ -1,15 +1,18 @@
 // GET /quizes/pregunta
+var models = require('../models/models.js'); // Dirección del modelo
 exports.pregunta = function( req, res) {
-	res.render("quizes/pregunta", {pregunta: "Cual es la capital de Italia?" });
+	models.Quiz.findAll().success(function(quiz) {
+    res.render('quizes/pregunta', { pregunta: quiz[0].pregunta});
 };
 
 // GET /quizes/respuesta
 exports.respuesta = function( req, res) {
-	if( req.query.respuesta === "Roma" ) {
-		res.render("quizes/respuesta", {respuesta: "Correcto !!!"});
-	} else {
-		res.render("quizes/respuesta", {respuesta: "Incorrecto"});
-	}
+	models.Quiz.findAll().success(function(quiz) {
+    if (req.query.respuesta === quiz[0].respuesta) {
+      res.render('quizes/respuesta', { respuesta: 'Correcto' });
+    } else {
+      res.render('quizes/respuesta', { respuesta: 'Incorrecto'});
+    }
 };
 
 //Get /quizez/creditos
