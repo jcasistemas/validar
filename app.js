@@ -68,5 +68,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 module.exports = app;
+
+console.log("\nSi inicia con foreman use: http://localhost/5000");
+console.log("Si inicia con node use: http://localhost/3000\n");

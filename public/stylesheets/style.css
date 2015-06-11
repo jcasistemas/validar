@@ -86,6 +86,10 @@ video { width: 100%; }
 #preguntas td a:hover {
 	color: limegreen;
 }
-
 #preguntas td a:before { color: black; content: "-"; }
+
+#Error1 {
+	Color: red;
+	font-size: 1.1em;
+}
 
