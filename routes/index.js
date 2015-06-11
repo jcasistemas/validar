@@ -9,9 +9,11 @@ router.get('/', function(req, res) {
   res.render('portada', { title: 'Bienvenido a Quiz !!!' });
 });
 
-// Version 2 - Importar el controlador
-router.get('/quizes/pregunta', quizController.pregunta);
-router.get('/quizes/respuesta', quizController.respuesta);
+// Paso 9 - Multiples preguntas
+// Definición de rutas de /quizes
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/respuesta', quizController.respuesta);
 
 router.get('/quizes/autor', quizController.autor);
 

@@ -73,3 +73,19 @@ footer a:first-child:after {
 }
 
 video { width: 100%; }
+
+/* Tabla de preguntas */
+#preguntas td { 
+	text-align: left;
+}
+#preguntas td a {
+	text-decoration: none;
+	color: darkgreen;
+	list-style-type: disc;
+}
+#preguntas td a:hover {
+	color: limegreen;
+}
+
+#preguntas td a:before { color: black; content: "-"; }
+
