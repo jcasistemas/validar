@@ -93,3 +93,30 @@ video { width: 100%; }
 	font-size: 1.1em;
 }
 
+
+/* Buscador */
+#search {
+	width: 40%;
+	height: 30px;	
+	margin-left: 66%;	
+}
+
+input#consulta {
+	position:relative;
+	top:-5px;
+	height: 25px;
+	width: 70%;
+}
+#search img  {
+	height: 22px;
+	width: 25px;
+}
+
+.reset {
+	clear: both;
+	margin:1px;
+}
+
+
+
+

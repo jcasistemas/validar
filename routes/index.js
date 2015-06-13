@@ -19,6 +19,9 @@ router.get('/quizes',                      	quizController.index);
 router.get('/quizes/:quizId(\\d+)',        	quizController.show);
 router.get('/quizes/:quizId(\\d+)/respuesta', quizController.respuesta);
 
+// colocar buscador (Fin Tema 9)
+router.get('/quizes/search',               quizController.buscar);
+
 router.get('/quizes/autor', quizController.autor);
 
 // Para cualquier ruta Inexistente

@@ -1,9 +1,23 @@
 <h3>Banco de preguntas</h3>
+<h4><%= subtitulo %></h4>
+
+<!-- colocar buscador (Fin Tema 9) -->
+<div id="search" >
+	<form action="/quizes/search" method="get" >
+		<input type="text" name="search" placeholder="Texto a buscar" id="consulta" title="Buscar las preguntas que contengan ..." />
+		<button type="submit" value="Responder" title="Efectuar Busqueda" alt="Boton de Busqueda" />
+			<img src="/images/lupa.png">
+		</button>
+	</form>
+</div>
+
+<div class="reset"></div>
+
 <table id="preguntas">
 	<% var i; for (i = 0; i < quizes.length; ++i ) { %>
 		<tr>
 			<td>
-			<a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a>
+			<a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a>
 			</td>
 		</tr>
 	<% } %>
