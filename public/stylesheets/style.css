@@ -118,5 +118,11 @@ input#consulta {
 }
 
 
-
+/* Agregar preguntas */
+#preg, #resp {
+	margin-top: 10px;
+}
+#pr { 
+	margin: 10px 0 0 10px;
+}
 

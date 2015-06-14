@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
   res.render('portada', { title: ' a Quiz !!!' });
 });
 
-// Paso 10 - Autoload
+// Paso 8 - Autoload
 // Autoload de comandos con el parametro :quizId
 router.param('quizId', quizController.load);  
 
@@ -18,6 +18,9 @@ router.param('quizId', quizController.load);
 router.get('/quizes',                      	quizController.index);
 router.get('/quizes/:quizId(\\d+)',        	quizController.show);
 router.get('/quizes/:quizId(\\d+)/respuesta', quizController.respuesta);
+//Paso 11 - Crear preguntas
+router.get('/quizes/new',               quizController.new);
+router.post('/quizes/create',               quizController.create);
 
 // colocar buscador (Fin Tema 9)
 router.get('/quizes/search',               quizController.buscar);

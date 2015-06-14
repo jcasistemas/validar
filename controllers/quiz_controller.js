@@ -38,6 +38,25 @@ exports.respuesta = function( req, res) {
 	res.render('quizes/respuesta', { quiz: req.quiz, respuesta: resultado });
 };
 
+//Paso 11 - Crear preguntas
+exports.new = function(req, res) {
+	var quiz = models.Quiz.build( 
+				{ pregunta: "Pregunta", respuesta: "Respuesta" }
+			);
+		res.render('quizes/new', { quiz: quiz } );
+};
+exports.create = function(req, res) {
+	var quiz = models.Quiz.build( req.body.quiz ); 
+
+	// Se guarda en la BD los 2 campos que vienen en quiz de POST 
+	// Se enumera los campos para evitar que hagan inyeccion de codigo
+	quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
+		res.redirect('/quizes' );
+	});
+};
+
+
+
 //Get /quizez/creditos
 exports.autor = function( req, res) {
 	res.render("quizes/autor", {title: "EQUIPO DE DESARROLLO" });

@@ -28,7 +28,10 @@ app.use(partials());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
+//Paso 11 - Crear preguntas
+// Se coloca en true o se elimina para que guarde los campos que le dice el controlador
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

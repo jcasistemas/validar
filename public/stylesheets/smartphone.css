@@ -42,3 +42,13 @@ li {list-style-type: none;}
 	height: 60px;	
 	margin: 0;
 }
+
+
+/* Agregar preguntas */
+.rem {
+	display: none;
+}
+#pr { 
+	margin: 0;
+}
+
