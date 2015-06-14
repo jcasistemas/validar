@@ -11,7 +11,7 @@ exports.load = function(req, res, next, quizId) {
       else {
       	// next( new Error('No existe la pregunta Nº. ' + quizId));
       	// Me parece mejor así gestionar el error
-		res.render('quizes/respuesta', { quizId: quizId, respuesta: 'Error' });
+		res.render('quizes/respuesta', { quizId: quizId, respuesta: 'Error', errors: [] });
       }
     }
   ).catch(function(error) { next(error);});
@@ -20,13 +20,13 @@ exports.load = function(req, res, next, quizId) {
 // GET /quizes
 exports.index = function(req, res) {
 	models.Quiz.findAll().then( function(quizes) {
-		res.render('quizes/index', { quizes: quizes, subtitulo: "" });
+		res.render('quizes/index', { quizes: quizes, subtitulo: "", errors: [] });
 	}).catch(function(error) { next(error); })
 };
 
 // GET /quizes/:id
 exports.show = function( req, res) {
-	res.render('quizes/show', { quiz: req.quiz } );
+	res.render('quizes/show', { quiz: req.quiz, errors: [] } );
 };
 
 // GET /quizes/:id/respuesta
@@ -35,31 +35,37 @@ exports.respuesta = function( req, res) {
 	if (req.query.respuesta === req.quiz.respuesta ) {
 		resultado = "Correcto";
 	}
-	res.render('quizes/respuesta', { quiz: req.quiz, respuesta: resultado });
+	res.render('quizes/respuesta', { quiz: req.quiz, respuesta: resultado, errors: [] });
 };
 
 //Paso 11 - Crear preguntas
 exports.new = function(req, res) {
-	var quiz = models.Quiz.build( 
+	var quiz = models.Quiz.build(
 				{ pregunta: "Pregunta", respuesta: "Respuesta" }
 			);
-		res.render('quizes/new', { quiz: quiz } );
+		res.render('quizes/new', { quiz: quiz, errors: [] } );
 };
 exports.create = function(req, res) {
-	var quiz = models.Quiz.build( req.body.quiz ); 
+	var quiz = models.Quiz.build( req.body.quiz );
 
-	// Se guarda en la BD los 2 campos que vienen en quiz de POST 
-	// Se enumera los campos para evitar que hagan inyeccion de codigo
-	quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
-		res.redirect('/quizes' );
-	});
+	// Paso 12 - Validación de error (Campo vacio)
+	// Funciona al Instalar sequielize@2.0.0
+	quiz.validate().then( function(err){
+			if( err ) {
+				res.render('quizes/new', {quiz: quiz, errors: err.errors} );
+			} else {
+				// Se guarda en la BD los 2 campos que vienen en quiz de POST
+				// Se enumera los campos para evitar que hagan inyeccion de codigo
+				quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
+					res.redirect('/quizes' ) } )
+			}
+		}
+	);
 };
-
-
 
 //Get /quizez/creditos
 exports.autor = function( req, res) {
-	res.render("quizes/autor", {title: "EQUIPO DE DESARROLLO" });
+	res.render("quizes/autor", {title: "EQUIPO DE DESARROLLO", errors: [] });
 };
 
 // colocar buscador (Fin Tema 9)
@@ -67,11 +73,11 @@ exports.autor = function( req, res) {
 exports.buscar = function( req, res) {
 	// Validar que el nombre del parametro exista (No se haya modificado en la ruta)
 	if( req.query.search === undefined ) {
-		res.render('quizes/index', { quizes: {}, subtitulo: "No es posible efectuar la búsqueda" });
+		res.render('quizes/index', { quizes: {}, subtitulo: "No es posible efectuar la búsqueda", errors: [] });
 	} else {
 		// Validar que se haya escrito a menos un caracter para buscar
 		if( req.query.search.length === 0 ) {
-			res.render('quizes/index', { quizes: {}, subtitulo: "Escriba algun texto a buscar" });
+			res.render('quizes/index', { quizes: {}, subtitulo: "Escriba algun texto a buscar", errors: [] });
 		} else {
 console.log("Largo=" + req.query.search.length )
 			// Procesar el texto recibido a un formato adecuado para la búsquda
@@ -93,7 +99,7 @@ console.log("Largo=" + req.query.search.length )
           order: [[ 'pregunta', 'ASC' ]] } ).then( function(quizes) {
 				    // Mensaje a mostrar de acuerdo al resultado de la búsqueda
     				var elSubtitulo = quizes.length + " Pregunta" + ( quizes.length===1?"":"s") + " con el patrón: '" + req.query.search.trim() + "'";
-    				res.render('quizes/index', { quizes: quizes, subtitulo: elSubtitulo });
+    				res.render('quizes/index', { quizes: quizes, subtitulo: elSubtitulo, errors: [] });
 			}).catch(function(error) { next(error); })
 		}
 	}

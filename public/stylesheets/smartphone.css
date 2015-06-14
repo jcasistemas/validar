@@ -39,16 +39,14 @@ li {list-style-type: none;}
 /* Buscador */
 #search {
 	width: 90%;
-	height: 60px;	
+	height: 60px;
 	margin: 0;
 }
 
 
 /* Agregar preguntas */
-.rem {
-	display: none;
-}
-#pr { 
-	margin: 0;
-}
+.rem { display: none; }
+#pr { margin: 0; }
 
+/* Errores */
+#ErrorMsgs>span:first-child { display: none; }

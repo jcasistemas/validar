@@ -6,12 +6,12 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('portada', { title: ' a Quiz !!!' });
+  res.render('portada', { title: ' a Quiz !!!', errors: [] });
 });
 
 // Paso 8 - Autoload
 // Autoload de comandos con el parametro :quizId
-router.param('quizId', quizController.load);  
+router.param('quizId', quizController.load);
 
 // Paso 9 - Multiples preguntas
 // Definición de rutas de /quizes
