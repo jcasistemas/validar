@@ -25,6 +25,9 @@ router.post('/quizes/create',               quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit',    quizController.edit);
 router.put('/quizes/:quizId(\\d+)',         quizController.update);
 
+// Paso 16 - Borrar
+router.delete('/quizes/:quizId(\\d+)',		quizController.destroy);
+
 // colocar buscador (Fin Tema 9)
 router.get('/quizes/search',                quizController.buscar);
 

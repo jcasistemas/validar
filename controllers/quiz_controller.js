@@ -54,6 +54,10 @@ exports.create = function(req, res) {
 			if( err ) {
 				res.render('quizes/new', {quiz: quiz, errors: err.errors} );
 			} else {
+				// Quitar espacios al comienzo y al final de lo enviado en el formulario
+				quiz.pregunta = quiz.pregunta.trim();
+  				quiz.respuesta = quiz.respuesta.trim();
+  
 				// Se guarda en la BD los 2 campos que vienen en quiz de POST
 				// Se enumera los campos para evitar que hagan inyeccion de codigo
 				quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
@@ -72,8 +76,9 @@ exports.edit = function( req, res) {
 exports.update = function( req, res) {
   // Se asigna a req.quiz porque es un objeto que tiene todos los métodos
   // Y propiedades de sequelize
-  req.quiz.pregunta = req.body.quiz.pregunta;
-  req.quiz.respuesta = req.body.quiz.respuesta;
+  // Quitar espacios al comienzo y al final de lo enviado en el formulario
+  req.quiz.pregunta = req.body.quiz.pregunta.trim();
+  req.quiz.respuesta = req.body.quiz.respuesta.trim();
   req.quiz.validate().then( function(err){
       if( err ) {
         res.render('quizes/edit', {quiz: req.quiz, errors: err.errors} );
@@ -85,6 +90,12 @@ exports.update = function( req, res) {
   );
 };
 
+// Paso 14 - Borrar - DELETE /quizes/:id
+exports.destroy = function( req, res) {
+	req.quiz.destroy().then( function() {
+		res.redirect('/quizes');
+	}).catch(function(error){ next(error)});
+};
 
 
 //Get /quizez/creditos

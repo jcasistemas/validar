@@ -5,7 +5,7 @@
 <div id="search" >
 	<form action="/quizes/search" method="get" >
 		<input type="text" name="search" placeholder="Texto a buscar" id="consulta" title="Buscar las preguntas que contengan ..." />
-		<button type="submit" value="Responder" title="Efectuar Busqueda" alt="Boton de Busqueda" />
+		<button type="submit" title="Efectuar Busqueda" alt="Boton de Busqueda" />
 			<img src="/images/lupa.png">
 		</button>
 	</form>
@@ -17,7 +17,15 @@
 	<% var i; for (i = 0; i < quizes.length; ++i ) { %>
 		<tr>
 			<td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-			<td><a href="/quizes/<%= quizes[i].id %>/edit"><button> editar </button></a></td>
+			<td><a href="/quizes/<%= quizes[i].id %>/edit"><button> editar </button></a>
+			</td>
+			<td>
+				<form action="/quizes/<%= quizes[i].id %>?_method=delete" method="post" >
+					<button type="submit" title="Borra Registro" alt="Boton de Borrado" 	onClick="return confirm('Borrar: <%= quizes[i].pregunta %>?');" />
+					 Borrar 
+					</button>
+				</form>
+			</td>
 		</tr>
 	<% } %>
 </table>
