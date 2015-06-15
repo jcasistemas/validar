@@ -1,12 +1,12 @@
 // Definicion de la tabla Quiz
 module.exports = function(sequelize, DataTypes) {
   	return sequelize.define('Quiz',
-		{ pregunta: { 
+		{ pregunta: {
 			type: DataTypes.STRING,
 			// Paso 12 - Validación de error (Campo vacio)
 			validate: { notEmpty: { msg: "Introduzca la pregunta" } }
 		  },
-		  respuesta: { 
+		  respuesta: {
 		  	type: DataTypes.STRING,
 		  	validate: { notEmpty: { msg: "Introduzca la Respuesta" } }
 		  }

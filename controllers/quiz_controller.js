@@ -35,7 +35,7 @@ exports.respuesta = function( req, res) {
 	if (req.query.respuesta === req.quiz.respuesta ) {
 		resultado = "Correcto";
 	}
-	res.render('quizes/respuesta', { quiz: req.quiz, respuesta: resultado, errors: [] });
+	res.render('quizes/respuesta', { quiz: req.quiz, respuesta: resultado, errors: [] } );
 };
 
 //Paso 11 - Crear preguntas
@@ -62,6 +62,30 @@ exports.create = function(req, res) {
 		}
 	);
 };
+
+// Paso 13 - Edición - GET /quizes/:id/edit
+exports.edit = function( req, res) {
+	var quiz = req.quiz; // vienen los parametros con valor por el Autoload
+		res.render('quizes/edit', { quiz: quiz, errors: [] });
+};
+//PUT /quizes/:id
+exports.update = function( req, res) {
+  // Se asigna a req.quiz porque es un objeto que tiene todos los métodos
+  // Y propiedades de sequelize
+  req.quiz.pregunta = req.body.quiz.pregunta;
+  req.quiz.respuesta = req.body.quiz.respuesta;
+  req.quiz.validate().then( function(err){
+      if( err ) {
+        res.render('quizes/edit', {quiz: req.quiz, errors: err.errors} );
+      } else {
+        req.quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
+          res.redirect('/quizes' ) } )
+      }
+    }
+  );
+};
+
+
 
 //Get /quizez/creditos
 exports.autor = function( req, res) {

@@ -86,7 +86,7 @@ video { width: 100%; }
 #preguntas td a:hover {
 	color: limegreen;
 }
-#preguntas td a:before { color: black; content: "-"; }
+#preguntas tr td:first-child:before { color: black; content: "-"; }
 
 #Error1 {
 	Color: red;
@@ -130,3 +130,10 @@ input#consulta {
 	font-size: smaler;
 }
 #ErrorMsgs>span:first-child { font-weight: 600; }
+
+#Incorrecto, #Error {
+	color: red;
+	font-size: 1.2em;
+}
+
+#Correcto { color: green; }

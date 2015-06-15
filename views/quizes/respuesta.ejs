@@ -1,13 +1,13 @@
-<p><%= respuesta %></p>
+<p id="<%= respuesta %>"><%= respuesta %> !!!</p>
 </br>
 <%
 switch( respuesta ) {
 	case "Incorrecto": %>
-		<a href="/quizes/<%= quiz.id %>">Intentelo de nuevo</a>	
+		<a href="/quizes/<%= quiz.id %>"><button>Intentelo de nuevo</button></a>
 <%
 		break;
 	case "Correcto": %>
-		<a href="/quizes">Responder mas preguntas</a>
+		<a href="/quizes"><button>Responder mas preguntas</button></a>
 <%
 		break;
 	case "Error": %>

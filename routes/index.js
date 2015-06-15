@@ -19,11 +19,14 @@ router.get('/quizes',                      	quizController.index);
 router.get('/quizes/:quizId(\\d+)',        	quizController.show);
 router.get('/quizes/:quizId(\\d+)/respuesta', quizController.respuesta);
 //Paso 11 - Crear preguntas
-router.get('/quizes/new',               quizController.new);
+router.get('/quizes/new',                   quizController.new);
 router.post('/quizes/create',               quizController.create);
+// Paso 13 - Edición
+router.get('/quizes/:quizId(\\d+)/edit',    quizController.edit);
+router.put('/quizes/:quizId(\\d+)',         quizController.update);
 
 // colocar buscador (Fin Tema 9)
-router.get('/quizes/search',               quizController.buscar);
+router.get('/quizes/search',                quizController.buscar);
 
 router.get('/quizes/autor', quizController.autor);
 

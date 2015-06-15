@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 // 6- Layouts
 var partials = require('express-partials');
+// 12- Editar
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 
@@ -33,6 +35,10 @@ app.use(bodyParser.json());
 // Se coloca en true o se elimina para que guarde los campos que le dice el controlador
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// 12- edit
+app.use( methodOverride('_method') );
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
