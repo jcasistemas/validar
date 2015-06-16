@@ -47,9 +47,7 @@ exports.new = function(req, res) {
 };
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build( req.body.quiz );
-	
-console.log("***", quiz );
-
+//console.log("\n", quiz, "\n" );
 
 	// Paso 12 - Validación de error (Campo vacio)
 	// Funciona al Instalar sequielize@2.0.0
@@ -84,8 +82,8 @@ exports.update = function( req, res) {
   req.quiz.respuesta = req.body.quiz.respuesta.trim();
   req.quiz.tema = req.body.quiz.tema.trim();
 
-console.log("***", req.quiz );
-console.log("***", req.body.quiz );
+// console.log("\n", req.quiz, "\n" );
+// console.log("\n", req.body.quiz, "\n" );
 
   req.quiz.validate().then( function(err){
       if( err ) {
@@ -122,7 +120,7 @@ exports.buscar = function( req, res) {
 		if( req.query.search.length === 0 ) {
 			res.render('quizes/index', { quizes: {}, subtitulo: "Escriba algun texto a buscar", errors: [] });
 		} else {
-console.log("Largo=" + req.query.search.length )
+// console.log("Largo=" + req.query.search.length )
 			// Procesar el texto recibido a un formato adecuado para la búsquda
 			cadena = req.query.search;
 			console.log("\nRecibi: '" + cadena + "'" );
