@@ -5,5 +5,22 @@
 <label for="resp" class="rem">Respuesta: </label>
 <input type="text" id="resp" name="quiz[respuesta]"
 	<%= etiqueta %>="<%= quiz.respuesta %>" placeholder="Respuesta"/><p>
+Tema: <select name="quiz[tema]">
+<%
+var losT = ["Otro", "Humanidades", "Ocio", "Ciencia", "Tecnologia" ];
+var elS = [ "", "", "", "", ""];
+for( var i in losT ) {
+	if ( losT[i].toUpperCase() === quiz.tema.toUpperCase() ) {
+		elS[i] = " selected ";
+		break;
+	}
+}
+%>
+  <option value="otro" <%= elS[0] %> > <%= losT[0] %> </option>
+  <option value="humanidades" <%= elS[1] %> > <%= losT[1] %> </option>
+  <option value="ocio" <%= elS[2] %> > <%= losT[2] %> </option>
+  <option value="ciencia" <%= elS[3] %> > <%= losT[3] %> </option>
+  <option value="tecnologia" <%= elS[4] %> > <%= losT[4] %> </option>
+</select><p>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Guardar" id="pr" />

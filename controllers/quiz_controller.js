@@ -41,12 +41,15 @@ exports.respuesta = function( req, res) {
 //Paso 11 - Crear preguntas
 exports.new = function(req, res) {
 	var quiz = models.Quiz.build(
-				{ pregunta: "Pregunta", respuesta: "Respuesta" }
+				{ pregunta: "Pregunta", respuesta: "Respuesta", tema: "Otro" }
 			);
 		res.render('quizes/new', { quiz: quiz, errors: [] } );
 };
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build( req.body.quiz );
+	
+console.log("***", quiz );
+
 
 	// Paso 12 - Validación de error (Campo vacio)
 	// Funciona al Instalar sequielize@2.0.0
@@ -57,10 +60,10 @@ exports.create = function(req, res) {
 				// Quitar espacios al comienzo y al final de lo enviado en el formulario
 				quiz.pregunta = quiz.pregunta.trim();
   				quiz.respuesta = quiz.respuesta.trim();
-  
+    			quiz.tema = quiz.tema
 				// Se guarda en la BD los 2 campos que vienen en quiz de POST
 				// Se enumera los campos para evitar que hagan inyeccion de codigo
-				quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
+				quiz.save( { fields: ["pregunta", "respuesta", "tema"] } ).then(function() {
 					res.redirect('/quizes' ) } )
 			}
 		}
@@ -79,11 +82,16 @@ exports.update = function( req, res) {
   // Quitar espacios al comienzo y al final de lo enviado en el formulario
   req.quiz.pregunta = req.body.quiz.pregunta.trim();
   req.quiz.respuesta = req.body.quiz.respuesta.trim();
+  req.quiz.tema = req.body.quiz.tema.trim();
+
+console.log("***", req.quiz );
+console.log("***", req.body.quiz );
+
   req.quiz.validate().then( function(err){
       if( err ) {
         res.render('quizes/edit', {quiz: req.quiz, errors: err.errors} );
       } else {
-        req.quiz.save( { fields: ["pregunta", "respuesta"] } ).then(function() {
+        req.quiz.save( { fields: ["pregunta", "respuesta", "tema"] } ).then(function() {
           res.redirect('/quizes' ) } )
       }
     }
@@ -104,7 +112,7 @@ exports.autor = function( req, res) {
 };
 
 // colocar buscador (Fin Tema 9)
-//Get /quizez/:search
+//Get /quizes/:search
 exports.buscar = function( req, res) {
 	// Validar que el nombre del parametro exista (No se haya modificado en la ruta)
 	if( req.query.search === undefined ) {

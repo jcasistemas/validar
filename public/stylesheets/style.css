@@ -94,7 +94,7 @@ video { width: 100%; }
 }
 
 
-/* Buscador */
+/* Buscador (Fin tema 9) */
 #search {
 	width: 40%;
 	height: 30px;
@@ -137,3 +137,12 @@ input#consulta {
 }
 
 #Correcto { color: green; }
+
+/* Tema */
+#tema {
+	font-size: 0.7em;
+	color: #888;
+}
+option {
+	text-transform: capitalize;
+}

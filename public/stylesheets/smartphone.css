@@ -36,7 +36,8 @@ li {list-style-type: none;}
 	padding: 2px;
 }
 
-/* Buscador */
+
+/* Buscador (Fin tema 9) */
 #search {
 	width: 90%;
 	height: 60px;
@@ -50,3 +51,8 @@ li {list-style-type: none;}
 
 /* Errores */
 #ErrorMsgs>span:first-child { display: none; }
+
+/* Tema */
+#preguntas tr td{
+	display: flex;
+}

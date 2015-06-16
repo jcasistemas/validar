@@ -48,9 +48,9 @@ sequelize.sync().then(function() {
       // Quiz.create( {pregunta: 'Capital de Italia',   respuesta: 'Roma'}
       // Se cambia método, para poder crear BD con VARIAS preguntas
       Quiz.bulkCreate(
-        [ {pregunta: 'Capital de Italia',   respuesta: 'Roma'},
-          {pregunta: 'Capital de Portugal', respuesta: 'Lisboa'},
-          {pregunta: 'Capital de Colombia', respuesta: 'Bogotá'}
+        [ {pregunta: 'Capital de Italia',   respuesta: 'Roma',    tema: "Otro"},
+          {pregunta: 'Capital de Portugal', respuesta: 'Lisboa',  tema: "Ciencia"},
+          {pregunta: 'Capital de Colombia', respuesta: 'Bogotá',  tema: "Humanidades"}
         ]
       ).then(function(){console.log('Base de datos inicializada')});
     };
